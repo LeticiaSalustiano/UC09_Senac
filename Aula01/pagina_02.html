@@ -8,20 +8,34 @@
 </head>
 <body>
 
+    <script>
 
-    <main>
+        function requisicao(url){
+    
+            let ajax = new XMLHttpRequest()
+    
+            console.log(ajax.readyState)
+    
+            ajax.open('GET',url)
+            
+            console.log(ajax.readyState)
+    
+            ajax.send()
+    
+            console.log(ajax)
+        }
+    
+      
+    </script>
+   
 
         <nav class="titulo"><h1>Requisições Síncronicas e Assíncronicas</h1></nav>
 
-    <div class="btn">
-        <a href="./pagina_01.php">Pagina 01</a>
-        <a href="./pagina_02.php">Pagina 02</a>
-        <a href="./pagina_03.php">Pagina 03</a>
-    </div>
-    
-
-    
-
-    </main>
+        <div class="btn">
+            <a href="#" onclick="requisicao('pagina_01.Conteudo.html')">Pagina 01</a>
+            <a href="#" onclick="requisicao('pagina_02.Conteudo.html')">Pagina 02</a>
+            <a href="#" onclick="requisicao('pagina_03.Conteudo.html')">Pagina 03</a>
+         </div>
+ 
 </body>
 </html>

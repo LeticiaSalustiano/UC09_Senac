@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-Br">
 <head>
@@ -10,23 +8,39 @@
 
 <script>
 
+    function requisicao(url){
+
+        let ajax = new XMLHttpRequest()
+
+        console.log(ajax.readyState)
+
+        ajax.open('GET',url)
+        
+        console.log(ajax.readyState)
+
+        ajax.send()
+
+        console.log(ajax)
+    }
+
+  
 </script>
 
 </head>
 <body>
 
 
- <main>
+ 
     <nav class="titulo"><h1>Requisições Síncronicas e Assíncronicas</h1></nav>
 
 
 <div class="btn">
-   <a href="#">Pagina 01</a>
-   <a href="#">Pagina 02</a>
-   <a href="#">Pagina 03</a>
+   <a href="#" onclick="requisicao('pagina_01.Conteudo.html')">Pagina 01</a>
+   <a href="#" onclick="requisicao('pagina_02.Conteudo.html')">Pagina 02</a>
+   <a href="#" onclick="requisicao('pagina_03.Conteudo.html')">Pagina 03</a>
 </div>
 
 
-</main>
+
 </body>
 </html>
