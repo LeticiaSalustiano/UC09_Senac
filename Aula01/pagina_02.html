@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pg.css">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
     <title>02</title>
 </head>
 <body>
@@ -11,6 +11,10 @@
     <script>
 
         function requisicao(url){
+            let imgloading = document.createElement('img')
+            imgloading.src = 'loading.gif'
+            
+            document.getElementById('loading').appendChild(imgloading)
     
             let ajax = new XMLHttpRequest()
     
@@ -24,18 +28,104 @@
     
             console.log(ajax)
         }
-    
-      
+        
     </script>
    
+<nav class="titulo">
+    <h1>Requisições Síncronicas e Assíncronicas</h1>
+</nav>
 
-        <nav class="titulo"><h1>Requisições Síncronicas e Assíncronicas</h1></nav>
+    <div class="btn">
+        <a href="#" onclick="requisicao('pagina_01.Conteudo.html')">Pagina 01</a>
+        <a href="#" onclick="requisicao('pagina_02.Conteudo.html')">Pagina 02</a>
+        <a href="#" onclick="requisicao('pagina_03.Conteudo.html')">Pagina 03</a>
+    </div>
 
-        <div class="btn">
-            <a href="#" onclick="requisicao('pagina_01.Conteudo.html')">Pagina 01</a>
-            <a href="#" onclick="requisicao('pagina_02.Conteudo.html')">Pagina 02</a>
-            <a href="#" onclick="requisicao('pagina_03.Conteudo.html')">Pagina 03</a>
-         </div>
+    <div class="col-md-class" id="loading"></div>
  
 </body>
 </html>
+
+<style>
+
+    /* Estilos gerais para o corpo da página */
+body {
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo */
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+/* Estilos para o título */
+nav.titulo {
+    background-color: #333; /* Cor de fundo escura para o título */
+    color: white; /* Cor do texto do título */
+    width: 100%; /* Título ocupa toda a largura */
+    padding: 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+}
+
+h1 {
+    margin: 0; /* Remove a margem do título */
+}
+
+/* Estilos para os botões */
+.btn {
+    margin-top: 30px; /* Espaçamento acima dos botões */
+}
+
+.btn a {
+    display: inline-block;
+    margin: 10px; /* Espaço entre os botões */
+    padding: 12px 24px; /* Tamanho do botão */
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto do botão */
+    text-decoration: none; /* Remove o sublinhado */
+    font-size: 16px;
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s, transform 0.3s; /* Efeitos de transição */
+}
+
+/* Efeito de hover para os botões */
+.btn a:hover {
+    background-color: #0056b3; /* Cor do fundo ao passar o mouse */
+    transform: scale(1.1); /* Aumenta o tamanho do botão */
+}
+
+/* Estilo geral para o container de carregamento */
+#loading {
+    /*width: 100%;
+    height: 100%;*/
+    padding: 10%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+img{
+    width: 70%;
+    height: 40%; 
+}
+
+
+
+
+/* Estilos para a estrutura geral */
+html {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+</style>

@@ -9,33 +9,35 @@
 <script>
 
     function requisicao(url){
+        document.getElementById('conteudo'). innerHTML = ""
         let imgloading = document.createElement('img')
         imgloading.src = 'loading.gif'
-
-        document.getElementById('loading').appendChild(imgloading)
+        imgloading.id = 'loading'
+        document.getElementById('conteudo').appendChild(imgloading)
 
         let ajax = new XMLHttpRequest()
 
-        //console.log(ajax.readyState)
-
         ajax.open('GET',url)
-        
-        //console.log(ajax.readyState)
 
-        ajax.onreadystatechange = () =>{
-            if (ajax.readyState == 4){
-                console.log('requisição bem sucedida')
-                document.getElementById('loading').remove()
+        ajax.onreadystatechange = () => {
+            if(ajax.readyState == 4){
+                if(ajax.status == 200){
+                    document.getElementById('conteudo').innerHTML = ajax.responseText
+                }
+                if(ajax.status == 404){
+                    document.getElementById('conteudo').innerHTML = 'recurso não encontrado, código de erro 404'
+                }
+
+                 //document.getElementById('loading').remove()
             }
-
-            //console.log(ajax.readyState)
         }
-
+        
         ajax.send()
+        console.log(ajax)
 
-        //console.log(ajax)
-    }
-
+     }
+ 
+    
 </script>
 
 </head>
@@ -47,12 +49,14 @@
 
 
 <div class="btn">
-   <a href="#" onclick="requisicao('pagina_01.Conteudo.html')">Pagina 01</a>
-   <a href="#" onclick="requisicao('pagina_02.Conteudo.html')">Pagina 02</a>
-   <a href="#" onclick="requisicao('pagina_03.Conteudo.html')">Pagina 03</a>
+   <a href="#" onclick="requisicao('pagina_01_Conteudo.html')">Pagina 01</a>
+   <a href="#" onclick="requisicao('pagina_02_Conteudo.html')">Pagina 02</a>
+   <a href="#" onclick="requisicao('pagina_03_Conteudo.html')">Pagina 03</a>
 </div>
 
-<div class="col-md-class" id="loading"></div>
+<div class="col-md-10" id="conteudo"></div>
+
+<div class="col-md-class" id="divloading"></div>
 
 </body>
 </html>
@@ -110,8 +114,9 @@ h1 {
 }
 
 img{
-    width: 70%;
-    height: 70%;
+    margin-top: 50%;
+    width: 80%;
+    height: 10%; 
 }
 
 /* Estilos para a estrutura geral */
