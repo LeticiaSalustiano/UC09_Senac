@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes</title>
+
+<script>
+ let controle = false
+
+   function getFilmes(){
+
+     if(!controle){
+         let xmlHttp = new XMLHttpRequest()
+            xmlHttp.open('GET', 'http://127.0.0.1/UC09/Aula02/Json/filmes.json')
+
+            xmlHttp.onreadystatechange = () =>{
+                if(xmlHttp.readyState == 4){
+
+                    if(xmlHttp.status == 200){
+                        let JSONFilmes = xmlHttp.responseText
+                        //console.log(JSONFilmes)
+
+                        let objJSONFilmes = JSON.parse(JSONFilmes)
+                        //console.log(objJSONFilmes)
+                           
+                       for(let i in objJSONFilmes.filmes){
+                            let item = objJSONFilmes.filmes[i]
+                            console.log(item)
+
+                            let divRow = document.createElement('div')
+                           divRow.className='row'
+
+                           let divCol = document.createElement('div')
+                           divCol.className='col'
+
+                           let p1 = document.createElement('p')
+                           p1.innerHTML = '<p><strong>Título:</strong> ' + item.titulo + '</p>'
+
+                           let p2 = document.createElement('p')
+                           p2.innerHTML = '<p><strong>Resumo:</strong> ' + item.resumo
+
+                           let genero = ''
+                           for(let g in item.generos){
+                              if(genero){
+                                genero += ', '
+                              }
+                               genero += item.generos[g].genero
+                           }
+
+                           let p3 = document.createElement('p')
+                           p3.innerHTML = '<p><strong>Gênero:</strong> ' + genero + '</p>'
+
+                           let elenco = ''
+                           for(let e in item.elenco){
+                              if(elenco){
+                                elenco += ', '
+                              }
+                               elenco += item.elenco[e].ator
+                           }
+
+                           let p4 = document.createElement('p')
+                           p4.innerHTML = '<p><strong>Elenco:</strong> ' + elenco + '</p>'
+
+                           let p5 = document.createElement('p')
+                           p5.innerHTML = '<p><strong>Data de lançamento:</strong>  ' + item.dataLancamento.data + ' (' + item.dataLancamento.pais + ')</p>'
+
+                           let hr = document.createElement('hr')
+                           
+                           //criar a hierarquia
+                           divRow.appendChild(divCol)
+                           divCol.appendChild(p1)
+                           divCol.appendChild(p2)
+                           divCol.appendChild(p3)
+                           divCol.appendChild(p4)
+                           divCol.appendChild(p5)
+                           divCol.appendChild(hr)
+
+                           document.getElementById('lista').appendChild(divRow)
+                        }
+
+                      controle = true
+
+                    }
+
+                    if(xmlHttp.status == 404){
+                         document.getElementById('conteudo').innerHTML = 'Recurso não encontrado, código de erro 404'
+                    }
+                }
+            }
+
+            xmlHttp.send()           
+    }
+}
+
+</script>
+
+</head>
+<body>
+
+    <nav class="titulo">
+        <h1>Catálogo de filmes</h1>
+    </nav>
+    
+    <div class="container" id="lista">
+      <div class="btn">
+          <button type="button" onclick="getFilmes()">Listar filmes</button>
+      </div>
+
+       <div class="rol mt-5" id="conteudo"></div>
+          
+   </div>
+ 
+</body>
+</html>
+
+<style>
+
+nav.titulo {
+    background-color: #3333339a; 
+    color: rgb(22, 22, 22);
+    width: auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0; 
+}
+
+.btn {
+    margin: 40px;
+}
+
+.btn button {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 24px; 
+    background-color: #888888; 
+    color: rgb(0, 0, 0); 
+    text-decoration: none; 
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn button:hover {
+    background-color: #555555; 
+    transform: scale(1.1); 
+    color: aliceblue;
+}
+
+p{
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.row{
+    margin: 40px;
+}
+</style>

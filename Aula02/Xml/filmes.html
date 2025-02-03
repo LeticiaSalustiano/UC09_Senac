@@ -7,8 +7,11 @@
     <title>Filmes</title>
 
 <script>
+    let controle = false
 
     function getFilmes(){
+
+    if(!controle){
          let xmlHttp = new XMLHttpRequest()
             xmlHttp.open('GET', 'http://127.0.0.1/UC09/Aula02/filmes.xml')
 
@@ -44,14 +47,30 @@
                            let p2 = document.createElement('p')
                            p2.innerHTML = '<p><strong>Resumo:</strong> ' + item['resumo']['#text'] + '</p>'
 
+                           let genero = ''
+                           for(let g in item.genero){
+                              if(genero){
+                                genero += ', '
+                              }
+                               genero += item.genero[g]['#text']
+                           }
+
                            let p3 = document.createElement('p')
-                           p3.innerHTML = '<p><strong>Gênero:</strong> Gênero do Filme</p>'
+                           p3.innerHTML = '<p><strong>Gênero:</strong> ' + genero + '</p>'
+
+                           let elenco = ''
+                           for(let e in item.elenco.ator){
+                              if(elenco){
+                                elenco += ', '
+                              }
+                               elenco += item.elenco.ator[e]['#text']
+                           }
 
                            let p4 = document.createElement('p')
-                           p4.innerHTML = '<p><strong>Elenco:</strong> Elenco do Filme</p>'
+                           p4.innerHTML = '<p><strong>Elenco:</strong> ' + elenco + '</p>'
 
                            let p5 = document.createElement('p')
-                           p5.innerHTML = '<p><strong>Data de lançamento:</strong> Data de lançamento do Filme</p>'
+                           p5.innerHTML = '<p><strong>Data de lançamento:</strong>  ' + item.dataLancamento['#text'] + ' (' + item.dataLancamento['@attributes']['pais'] + ')</p>'
 
                            let hr = document.createElement('hr')
                            
@@ -66,6 +85,8 @@
                            document.getElementById('lista').appendChild(divRow)
                         }
 
+                      controle = true
+
                     }
 
                     if(xmlHttp.status == 404){
@@ -77,6 +98,7 @@
             //console.log(xmlHttp)
             xmlHttp.send()           
     }
+}
 
 </script>
 
