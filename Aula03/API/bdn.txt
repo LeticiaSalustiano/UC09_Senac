@@ -1,0 +1,104 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <title>TV & Filmes</title>
+</head>
+<body>
+
+    <script>
+
+     function getPersonagem(){
+
+             if(!controle){
+                let xmlHttp = new XMLHttpRequest()
+                xmlHttp.open('GET', 'http://127.0.0.1/UC09/Aula03/API/filmes.json')
+            
+             }
+           }
+
+    </script>
+
+       <nav class="titulo">
+            <h1>Game of Thrones</h1>
+       </nav>
+
+    <div id="controle"></div>
+    
+</body>
+</html>
+
+<style>
+
+@font-face { font-family: 'Game of Trhones'; 
+    src: url('./Game\ of\ Thrones.ttf') format('truetype');
+
+}
+
+
+</style>
+
+
+
+personagem.json
+
+{
+    "Personagem": {
+
+	"nome": "Jon Snow",
+	"gênero": "Masculino",
+	"cultura": "homens do Norte",
+	"nascido": "Em 283 d.C.",
+	"títulos": [
+		"Senhor Comandante da Patrulha da Noite"
+	],
+	"aliases": [
+		"Senhor Neve",
+		"O Bastardo de Ned Stark",
+		"A Neve de Winterfell",
+		"O Corvo-Chega",
+		"O 998º Senhor Comandante da Patrulha da Noite",
+		"O Bastardo de Winterfell",
+		"O Bastardo Negro da Muralha",
+		"Senhor Corvo"
+	],
+	"pai": "",
+	"mãe": "",
+	"cônjuge": "",
+	"lealdades": [
+		"https://anapioficeandfire.com/api/houses/362"
+	],
+	
+	"série de TV": [
+		"Temporada 1",
+		"Temporada 2",
+		"Temporada 3",
+		"Temporada 4",
+		"Temporada 5",
+		"Temporada 6"
+	],
+	"interpretadoPor": [
+		"Kit Harington"
+	]
+}
+}
+
+
+
+
+
+
+
+
+  <nav class="titulo">
+        <h1>Game of Thrones</h1>
+    </nav>
+
+    <div class="container" id="lista">
+        <div class="btn">
+            <button type="button" onclick="getFilmes()">Personagem</button>
+        </div>
