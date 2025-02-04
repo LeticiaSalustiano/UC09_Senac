@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <title>Livros Fantasia</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <h1>Lista de Livros</h1>
+    </nav>
+
+    <div id="lista"></div>
+    
+    <script>
+    let controle = false;
+
+    function getLivros() {
+        if(!controle) {
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('GET', 'http://127.0.0.1/UC09/Aula03/Teste/livros.json', true);
+
+            xmlHttp.onreadystatechange = () => {
+                if (xmlHttp.readyState == 4) {
+                    if (xmlHttp.status == 200) {
+                        let JSONLivros = xmlHttp.responseText;
+                        let objJSONLivros = JSON.parse(JSONLivros);
+
+                        for(let i in objJSONLivros.livros) {
+                            let item = objJSONLivros.livros[i];
+
+                            let divRow = document.createElement('div');
+                            divRow.className = 'row';
+
+                            let divCol = document.createElement('div');
+                            divCol.className = 'col';
+
+                            let p1 = document.createElement('p');
+                            p1.innerHTML = '<p><strong>Título:</strong> ' + item.titulo + '</p>';
+
+                            let p2 = document.createElement('p');
+                            p2.innerHTML = '<p><strong>Autor:</strong> ' + item.autor + '</p>';
+
+                            let p3 = document.createElement('p');
+                            p3.innerHTML = '<p><strong>Resumo:</strong> ' + item.resumo + '</p>';
+
+                            let genero = '';
+                            for(let g in item.generos) {
+                                if(genero) {
+                                    genero += ', ';
+                                }
+                                genero += item.generos[g].genero;
+                            }
+
+                            let p4 = document.createElement('p');
+                            p4.innerHTML = '<p><strong>Gênero:</strong> ' + genero + '</p>';
+
+                            let elenco = '';
+                            for(let e in item.elenco) {
+                                if(elenco) {
+                                    elenco += ', ';
+                                }
+                                elenco += item.elenco[e].ator;
+                            }
+
+                            let p5 = document.createElement('p');
+                            p5.innerHTML = '<p><strong>Elenco:</strong> ' + elenco + '</p>';
+
+                            let p6 = document.createElement('p');
+                            p6.innerHTML = '<p><strong>Data de lançamento:</strong> ' + item.dataLancamento.data + ' (' + item.dataLancamento.pais + ')</p>';
+
+                            let hr = document.createElement('hr');
+                           
+                            // Criar a hierarquia
+                            divRow.appendChild(divCol);
+                            divCol.appendChild(p1);
+                            divCol.appendChild(p2);
+                            divCol.appendChild(p3);
+                            divCol.appendChild(p4);
+                            divCol.appendChild(p5);
+                            divCol.appendChild(p6);
+                            divCol.appendChild(hr);
+
+                            document.getElementById('lista').appendChild(divRow);
+                        }
+
+                        controle = true;
+
+                    } else if(xmlHttp.status == 404) {
+                        document.getElementById('lista').innerHTML = 'Recurso não encontrado, código de erro 404';
+                    }
+                }
+            };
+
+            xmlHttp.send();  
+        }
+    }
+
+    window.onload = getLivros;
+    </script>
+
+</body>
+</html>
+
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    padding: 15px;
+    text-align: center;
+    color: #f8f9fa;
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+.row {
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.row .col {
+    width: 100%;
+}
+
+hr {
+    border: 1px solid #ddd;
+}
+
+p {
+    margin: 10px 0;
+}
+
+
+</style>

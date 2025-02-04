@@ -1,0 +1,34 @@
+{
+   "Personagem": {
+        "nome": "Daenerys Targaryen",
+        "gênero": "Feminino",
+        "cultura": "Valiriano",
+        "nascido": "Em 282 d.C.",
+        "títulos": [
+            "Mãe dos Dragões",
+            "Rainha de Meereen",
+            "Quebra Correntes"
+        ],
+        "aliases": [
+            "Dany",
+            "A Não Queimada",
+            "Filha da Tormenta",
+            "Khaleesi",
+            "Mhysa"
+        ],
+        "pai": "Aerys II Targaryen",
+        "mãe": "Rhaella Targaryen",
+        "cônjuge": "Drogo",
+        "série de TV": [
+            "Temporada 1",
+            "Temporada 2",
+            "Temporada 3",
+            "Temporada 4",
+            "Temporada 5",
+            "Temporada 6"
+        ],
+        "interpretadoPor": [
+            "Emilia Clarke"
+        ]
+    }
+}

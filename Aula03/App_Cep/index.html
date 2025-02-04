@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-Br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Pesquisa Endereço</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>App Cep</title>
 </head>
 <body>
+
+<script>
+
+      function getEndereco(cep){
+         let url = 'http://viacep.com.br/ws/'+cep+'/json/'
+         //console.log(url)
+         let xmlHttp = new XMLHttpRequest
+
+         xmlHttp.open('GET', url)
+
+         xmlHttp.onreadystatechange = () =>{
+            if(xmlHttp.readyState == 4) {
+                if(xmlHttp.status == 200){
+                   let dadosJSONText = xmlHttp.responseText
+                   //console.log(dadosJSONText)
+
+                   let dadosJSONobj = JSON.parse(dadosJSONText)
+                   //console.log(dadosJSONobj)
+
+                   document.getElementById('endereco').value = dadosJSONobj.logradouro
+                   document.getElementById('bairro').value = dadosJSONobj.bairro
+                   document.getElementById('cidade').value = dadosJSONobj.localidade
+                   document.getElementById('uf').value = dadosJSONobj.uf
+                   document.getElementById('retorno').innerHTML = ''
+
+                }
+                  if(xmlHttp.status == 0){
+                    document.getElementById('retorno').innerHTML = '<h1>Recurso não encontrado, Código de erro 404</h1>'
+                }
+            }
+            xmlHttp.send()
+         }
+      }
+
+</script>
 
     <nav class="titulo">
         <h1>App Pesquisa Endereço</h1>
@@ -13,12 +49,13 @@
 
   <div class="formulario">
         <div class="inputs">
-            <input type="text" placeholder="CEP">
-            <input type="text" placeholder="Endereço" readonly>
-            <input type="text" placeholder="Bairro" readonly>
-            <input type="text" placeholder="Cidade" readonly>
-            <input type="text" placeholder="UF" readonly>
+            <input type="text" placeholder="CEP" onblur="getEndereco(this.value)">
+            <input type="text" placeholder="Endereço" readonly id="endereco">
+            <input type="text" placeholder="Bairro" readonly id="bairro">
+            <input type="text" placeholder="Cidade" readonly id="cidade">
+            <input type="text" placeholder="UF" readonly id="uf">
     </div>
+   <div id="retorno"></div>
   </div>
     
 </body>
@@ -63,7 +100,6 @@ nav.titulo {
 
 .formulario input[readonly] {
     background-color: #e9e9e9;
-    cursor: not-allowed;
     
 }
 

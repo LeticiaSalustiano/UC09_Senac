@@ -1,0 +1,40 @@
+{
+    "livros": [
+        {
+            "titulo": "Game of Trhones",
+            "autor": "George R. R. Martin",
+            "generos": [
+                {"genero": "Fantasia"},
+                {"genero": "Aventura"}
+            ],
+            "resumo": "Em Westeros, sete famílias nobres lutam pelo controle do Trono de Ferro.",
+            "elenco": [
+                {"ator": "Sean Bean"},
+                {"ator": "Emilia Clarke"},
+                {"ator": "Kit Harington"}
+            ],
+            "dataLancamento": {
+                "data": "1996",
+                "pais": "EUA"
+            }
+        },
+        {
+            "titulo": "O Nome do Vento",
+            "autor": "Patrick Rothfuss",
+            "generos": [
+                {"genero": "Fantasia"},
+                {"genero": "Aventura"}
+            ],
+            "resumo": "A história de Kvothe, um jovem que se torna um lendário herói.",
+            "elenco": [
+                {"ator": "Benjamin Wong"},
+                {"ator": "Renée Elise Goldsberry"},
+                {"ator": "Rachel Brosnahan"}
+            ],
+            "dataLancamento": {
+                "data": "2007",
+                "pais": "EUA"
+            }
+        }
+    ]
+}

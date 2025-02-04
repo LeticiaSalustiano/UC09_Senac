@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <title>TV & Filmes</title>
+</head>
+<body>
+
+    <nav class="titulo">
+        <h1>Game of Thrones</h1>
+    </nav>
+
+    <div id="controle"></div>
+    
+    <script>
+    function getPersonagem() {
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                let personagem = JSON.parse(this.responseText).Personagem;
+                document.getElementById('controle').innerHTML = `
+                    <h2>${personagem.nome}</h2>
+                    <p><strong>Gênero: </strong> ${personagem.gênero}</p>
+                    <p><strong>Cultura: </strong> ${personagem.cultura}</p>
+                    <p><strong>Nascido: </strong> ${personagem.nascido}</p>
+                    <p><strong>Títulos: </strong> ${personagem.títulos.join(', ')}</p>
+                    <p><strong>Aliases: </strong> ${personagem.aliases.join(', ')}</p>
+                    <p><strong>Pai: </strong> ${personagem.pai || ' Desconhecido'}</p>
+                    <p><strong>Mãe: </strong> ${personagem.mãe || ' Desconhecido'}</p>
+                    <p><strong>Cônjuge: </strong> ${personagem.cônjuge || ' Desconhecido'}</p>
+                    <p><strong>Série de TV: </strong> ${personagem['série de TV'].join(', ')}</p>
+                    <p><strong>Interpretado por: </strong> ${personagem.interpretadoPor.join(', ')}</p>
+                `;
+            } else if(this.status == 404) {
+                document.getElementById('controle').innerHTML = 'Recurso não encontrado, código de erro 404';
+            } else {
+                document.getElementById('controle').innerHTML = 'Ocorreu um erro ao buscar os dados';
+            }
+        }
+    };
+    xmlHttp.open('GET', 'http://127.0.0.1/UC09/Aula03/API/personagem.json', true);
+    xmlHttp.send();
+}
+
+window.onload = getPersonagem;
+
+    </script>
+
+</body>
+</html>
+
+
+<style>
+@font-face { 
+    font-family: 'Game of Thrones'; 
+    src: url('./Game\ of\ Thrones.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Game of Thrones', Arial, sans-serif;
+    background-image: url(./game.jpg);
+    color: #f8f9fa; 
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-size: 300%;
+    color: #C0C0C0;
+    text-align: center;
+}
+
+ h2 {
+    color: #cfa003;
+    text-align: center;
+    padding: 15px;
+}
+
+
+#controle {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #00000094;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    border: 1px solid #0000008c;
+}
+
+#controle h2, #controle p {
+    margin: 20px 0;
+}
+
+p{
+    color: rgb(204, 207, 209);
+}
+
+strong{
+    color: rgba(255, 255, 255, 0.87);
+}
+
+</style>
