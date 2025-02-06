@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
     <title>TV & Filmes</title>
+    <style>
+     /*   body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .personagem {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .personagem h2 {
+            margin-top: 0;
+        }*/
+    </style>
 </head>
 <body>
 
@@ -15,39 +41,51 @@
     <div id="controle"></div>
     
     <script>
-    function getPersonagem() {
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                let personagem = JSON.parse(this.responseText).Personagem;
-                document.getElementById('controle').innerHTML = `
-                    <h2>${personagem.nome}</h2>
-                    <p><strong>Gênero: </strong> ${personagem.gênero}</p>
-                    <p><strong>Cultura: </strong> ${personagem.cultura}</p>
-                    <p><strong>Nascido: </strong> ${personagem.nascido}</p>
-                    <p><strong>Títulos: </strong> ${personagem.títulos.join(', ')}</p>
-                    <p><strong>Aliases: </strong> ${personagem.aliases.join(', ')}</p>
-                    <p><strong>Pai: </strong> ${personagem.pai || ' Desconhecido'}</p>
-                    <p><strong>Mãe: </strong> ${personagem.mãe || ' Desconhecido'}</p>
-                    <p><strong>Cônjuge: </strong> ${personagem.cônjuge || ' Desconhecido'}</p>
-                    <p><strong>Série de TV: </strong> ${personagem['série de TV'].join(', ')}</p>
-                    <p><strong>Interpretado por: </strong> ${personagem.interpretadoPor.join(', ')}</p>
-                `;
-            } else if(this.status == 404) {
-                document.getElementById('controle').innerHTML = 'Recurso não encontrado, código de erro 404';
-            } else {
-                document.getElementById('controle').innerHTML = 'Ocorreu um erro ao buscar os dados';
+     
+    function getPersonagens() {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    let personagens = JSON.parse(this.responseText).Personagens;
+                    let output = '';
+
+                    personagens.forEach(personagem => {
+                        output += `
+                            <div class="personagem">
+                                <h2>${personagem.nome}</h2>
+                                <p><strong>Gênero: </strong> ${personagem.gênero}</p>
+                                <p><strong>Cultura: </strong> ${personagem.cultura}</p>
+                                <p><strong>Nascido: </strong> ${personagem.nascido}</p>
+                                <p><strong>Títulos: </strong> ${personagem.títulos.join(', ')}</p>
+                                <p><strong>Aliases: </strong> ${personagem.aliases.join(', ')}</p>
+                                <p><strong>Pai: </strong> ${personagem.pai || 'Desconhecido'}</p>
+                                <p><strong>Mãe: </strong> ${personagem.mãe || 'Desconhecido'}</p>
+                                <p><strong>Cônjuge: </strong> ${personagem.cônjuge || 'Desconhecido'}</p>
+                                <p><strong>Série de TV: </strong> ${personagem['série de TV'].join(', ')}</p>
+                                <p><strong>Interpretado por: </strong> ${personagem.interpretadoPor.join(', ')}</p>
+                            </div>
+                        `;
+                    });
+
+                    document.getElementById('controle').innerHTML = output;
+                } else if (this.status == 404) {
+                    document.getElementById('controle').innerHTML = 'Recurso não encontrado, código de erro 404';
+                } else {
+                    document.getElementById('controle').innerHTML = 'Ocorreu um erro ao buscar os dados';
+                }
             }
-        }
-    };
-    xmlHttp.open('GET', 'http://127.0.0.1/UC09/Aula03/API/personagem.json', true);
-    xmlHttp.send();
-}
+        };
+        xmlHttp.open('GET', 'http://127.0.0.1/UC09/Aula03/API/personagem.json', true);
+        xmlHttp.send();
+    }
 
-window.onload = getPersonagem;
-
+    window.onload = getPersonagens;
     </script>
+
+</body>
+</html>
+
 
 </body>
 </html>

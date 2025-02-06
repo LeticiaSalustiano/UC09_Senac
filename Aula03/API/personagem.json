@@ -1,34 +1,69 @@
 {
-   "Personagem": {
-        "nome": "Daenerys Targaryen",
-        "gênero": "Feminino",
-        "cultura": "Valiriano",
-        "nascido": "Em 282 d.C.",
-        "títulos": [
-            "Mãe dos Dragões",
-            "Rainha de Meereen",
-            "Quebra Correntes"
-        ],
-        "aliases": [
-            "Dany",
-            "A Não Queimada",
-            "Filha da Tormenta",
-            "Khaleesi",
-            "Mhysa"
-        ],
-        "pai": "Aerys II Targaryen",
-        "mãe": "Rhaella Targaryen",
-        "cônjuge": "Drogo",
-        "série de TV": [
-            "Temporada 1",
-            "Temporada 2",
-            "Temporada 3",
-            "Temporada 4",
-            "Temporada 5",
-            "Temporada 6"
-        ],
-        "interpretadoPor": [
-            "Emilia Clarke"
-        ]
-    }
+    "Personagens": [
+        {
+            "nome": "Daenerys Targaryen",
+            "gênero": "Feminino",
+            "cultura": "Valiriano",
+            "nascido": "Em 282 d.C.",
+            "títulos": [
+                "Mãe dos Dragões",
+                "Rainha de Meereen",
+                "Quebra Correntes"
+            ],
+            "aliases": [
+                "Dany",
+                "A Não Queimada",
+                "Filha da Tormenta",
+                "Khaleesi",
+                "Mhysa"
+            ],
+            "pai": "Aerys II Targaryen",
+            "mãe": "Rhaella Targaryen",
+            "cônjuge": "Drogo",
+            "série de TV": [
+                "Temporada 1",
+                "Temporada 2",
+                "Temporada 3",
+                "Temporada 4",
+                "Temporada 5",
+                "Temporada 6"
+            ],
+            "interpretadoPor": [
+                "Emilia Clarke"
+            ]
+        },
+        {
+            "nome": "Jon Snow",
+            "gênero": "Masculino",
+            "cultura": "Homens do Norte",
+            "nascido": "Em 283 d.C.",
+            "títulos": [
+                "Senhor Comandante da Patrulha da Noite"
+            ],
+            "aliases": [
+                "Senhor Neve",
+                "O Bastardo de Ned Stark",
+                "A Neve de Winterfell",
+                "O Corvo-Chega",
+                "O 998º Senhor Comandante da Patrulha da Noite",
+                "O Bastardo de Winterfell",
+                "O Bastardo Negro da Muralha",
+                "Senhor Corvo"
+            ],
+            "pai": "",
+            "mãe": "",
+            "cônjuge": "",
+            "série de TV": [
+                "Temporada 1",
+                "Temporada 2",
+                "Temporada 3",
+                "Temporada 4",
+                "Temporada 5",
+                "Temporada 6"
+            ],
+            "interpretadoPor": [
+                "Kit Harington"
+            ]
+        }
+    ]
 }
